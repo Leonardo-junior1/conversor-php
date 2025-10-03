@@ -19,15 +19,16 @@ for ($i = 1; $i <= 5; $i++) {
     $erro = validarEntrada($nome, $f1, $f2, $f3);
     if ($erro != "") {
         echo "<h3>Produto $i: $nome</h3>";
-        echo "<p style='color:red'>Erro: $erro</p>";
+        echo "<p style='color:red'>Erro: $erro</p><br>";
         continue;
     }
 
     $total = calcularEstoqueTotal($f1, $f2, $f3);
     echo "<h3>Produto $i: $nome</h3>";
-    echo "Filial 1: $f1 unidades";
-    echo "Filial 2: $f2 unidades";
-    echo "Filial 3: $f3 unidades";
-    echo "Total: $total unidades";
+    echo "Filial 1: $f1 unidades<br>";
+    echo "Filial 2: $f2 unidades<br>";
+    echo "Filial 3: $f3 unidades<br>";
+    echo "<b>Total:</b> $total unidades<br><br>";
 }
 ?>
+
