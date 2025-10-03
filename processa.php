@@ -1,26 +1,20 @@
 <?php
 function validarEntrada($nome, $q1, $q2, $q3) {
-    if ($nome == "" || $nome == null) {
-        return "Nome vazio";
-    }
-    if (!is_numeric($q1) || !is_numeric($q2) || !is_numeric($q3)) {
-        return "Quantidade precisa ser número";
-    }
-    if ($q1 < 0 || $q2 < 0 || $q3 < 0) {
-        return "Quantidade não pode ser negativa";
-    }
-    return ""; 
+    if ($nome == "" || $nome == null) return "Nome vazio";
+    if (!is_numeric($q1) || !is_numeric($q2) || !is_numeric($q3)) return "Quantidade precisa ser número";
+    if ($q1 < 0 || $q2 < 0 || $q3 < 0) return "Quantidade não pode ser negativa";
+    return "";
+}
+
+function calcularEstoqueTotal($q1, $q2, $q3) {
+    return $q1 + $q2 + $q3;
 }
 
 for ($i = 1; $i <= 5; $i++) {
     $nome = $_POST["produto{$i}_nome"];
-    $f1 = $_POST["produto{$i}_filial1"];
-    $f2 = $_POST["produto{$i}_filial2"];
-    $f3 = $_POST["produto{$i}_filial3"];
-
-    $f1 = (int) $f1;
-    $f2 = (int) $f2;
-    $f3 = (int) $f3;
+    $f1 = (int) $_POST["produto{$i}_filial1"];
+    $f2 = (int) $_POST["produto{$i}_filial2"];
+    $f3 = (int) $_POST["produto{$i}_filial3"];
 
     $erro = validarEntrada($nome, $f1, $f2, $f3);
     if ($erro != "") {
@@ -29,7 +23,7 @@ for ($i = 1; $i <= 5; $i++) {
         continue;
     }
 
-    $total = $f1 + $f2 + $f3;
+    $total = calcularEstoqueTotal($f1, $f2, $f3);
     echo "<h3>Produto $i: $nome</h3>";
     echo "Filial 1: $f1 unidades";
     echo "Filial 2: $f2 unidades";
